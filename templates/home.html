@@ -4,26 +4,23 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home - Simple Dictionary</title>
+    <title>Simple Dictionary</title>
 
     <link rel="stylesheet" href="{{ url_for("static", filename="style.css") }}">
     <script> WORD_DEF_URL = {{ url_for("word_definition")|tojson }} </script>
     <script src="{{ url_for("static", filename="script.js") }}" defer></script>
-
 </head>
 <body>
     <main>
         <div id="input-div">
-            <div id="inner-input-div">
-                <label for="word">Word to lookup: </label>
+            <label for="word">Word to lookup: </label>
+            <div id="search-bar">
                 <img src="{{ url_for("static", filename="search.svg") }}" alt="Search Icon">
                 <input id="word-input" name="word" type="text">
-                <button type="button" id="lookup">Look up</button>
             </div>
+            <button type="button" id="lookup">Look up</button>
         </div>
-        <p>
-            <code id="word-data">{"empty": "data"}</code>
-        </p>
+        <p id="word-data">{"empty": "data"}</p>
     </main>
 </body>
 </html>

@@ -9,7 +9,6 @@ def fetch_word(word : str):
     # Finding word info with api call
     payload = api.get("https://en.wiktionary.org/api/rest_v1/page/definition/" + word)
     data = payload.json()
-    print(data)
 
     if "detail" in data and data["detail"] == INVALID_MESSAGE:
         return INVALID_MESSAGE
