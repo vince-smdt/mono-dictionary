@@ -6,16 +6,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home - Simple Dictionary</title>
 
+    <link rel="stylesheet" href="{{ url_for("static", filename="style.css") }}">
     <script> WORD_DEF_URL = {{ url_for("word_definition")|tojson }} </script>
     <script src="{{ url_for("static", filename="script.js") }}" defer></script>
 
 </head>
 <body>
     <main>
-        <label for="word">Word to lookup: </label>
-        <input id="word-input" name="word" type="text">
-        <button type="button" id="lookup">Look up</button>
-        <code id="word-data" style="display: block; margin: 5px 0px; padding: 3px; border: 1px black solid;">{"empty": "data"}</code>
+        <div id="input-div">
+            <div id="inner-input-div">
+                <label for="word">Word to lookup: </label>
+                <img src="{{ url_for("static", filename="search.svg") }}" alt="Search Icon">
+                <input id="word-input" name="word" type="text">
+                <button type="button" id="lookup">Look up</button>
+            </div>
+        </div>
+        <p>
+            <code id="word-data">{"empty": "data"}</code>
+        </p>
     </main>
 </body>
 </html>
