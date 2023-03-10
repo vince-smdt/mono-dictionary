@@ -5,14 +5,17 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home - Simple Dictionary</title>
+
+    <script> WORD_DEF_URL = {{ url_for("word_definition")|tojson }} </script>
+    <script src="{{ url_for("static", filename="script.js") }}" defer></script>
+
 </head>
 <body>
     <main>
-        <form action="{{ url_for('word_submit') }}" method="POST">
-            <label for="word">Word to lookup: </label>
-            <input id="word" name="word" type="text">
-            <input type="submit">
-        </form>
+        <label for="word">Word to lookup: </label>
+        <input id="word-input" name="word" type="text">
+        <button type="button" id="lookup">Look up</button>
+        <code id="word-data" style="display: block; margin: 5px 0px; padding: 3px; border: 1px black solid;">{"empty": "data"}</code>
     </main>
 </body>
 </html>
