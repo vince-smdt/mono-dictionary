@@ -1,5 +1,5 @@
 // Dom elements
-const LOOKUP_BUTTON = document.getElementById("lookup")
+const LOOKUP_BUTTON = document.getElementById("lookup-button")
 const WORD_DATA = document.getElementById("word-data")
 const WORD_INPUT = document.getElementById("word-input")
 

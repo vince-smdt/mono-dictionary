@@ -7,6 +7,7 @@ def fetch_word(word : str):
         return INVALID_MESSAGE
     
     # Finding word info with api call
+    word = word.replace(' ', '%20')
     payload = api.get("https://en.wiktionary.org/api/rest_v1/page/definition/" + word)
     data = payload.json()
 
