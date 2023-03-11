@@ -22,7 +22,21 @@ function get_word() {
     })
     .then(response => response.json())
     .then(data => {
-        WORD_DATA.innerText = JSON.stringify(data)
+        if (!Array.isArray(data)) {
+            WORD_DATA.innerText = "Invalid word!"
+            return
+        }
+        
+        WORD_DATA.innerText = ""
+
+        for (sense_i = 0; sense_i < data.length; sense_i++) {
+            p_tag = document.createElement("p")
+            p_tag.innerText = JSON.stringify(data[sense_i])
+            WORD_DATA.appendChild(p_tag)
+
+            if (sense_i != data.length - 1)
+                WORD_DATA.appendChild(document.createElement("hr"))
+        }
     })
 }
 

@@ -1,6 +1,6 @@
 import requests.api as api
 
-INVALID_MESSAGE = "Page or revision not found."
+INVALID_MESSAGE = "No Definitions Found"
 
 def fetch_word(word : str):
     if not word:
@@ -8,10 +8,10 @@ def fetch_word(word : str):
     
     # Finding word info with api call
     word = word.replace(' ', '%20')
-    payload = api.get("https://en.wiktionary.org/api/rest_v1/page/definition/" + word)
+    payload = api.get("https://api.dictionaryapi.dev/api/v2/entries/en/" + word)
     data = payload.json()
 
-    if "detail" in data and data["detail"] == INVALID_MESSAGE:
+    if type(data) == dict and data["title"] == INVALID_MESSAGE:
         return INVALID_MESSAGE
 
-    return data["en"] # TODO - Let user choose language
+    return data

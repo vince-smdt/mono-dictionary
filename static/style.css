@@ -29,6 +29,10 @@ main {
     flex-direction: column;
 }
 
+hr {
+    margin: 10px 0;
+}
+
 #input-div label, #word-input, #lookup-button {
     font-size: 20px;
     font-family: "Roboto Mono";
@@ -75,8 +79,7 @@ main {
 }
 
 #word-data {
-    margin: 5px 0px;
-    padding: 3px;
-    border: 1px white solid;
+    margin: 5px 0;
+    padding: 10px;
     color: white;
 }
