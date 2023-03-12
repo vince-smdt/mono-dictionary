@@ -20,7 +20,6 @@ export default {
 * {
   margin: 0;
   padding: 0;
-  transition: all 0.1s ease-in;
 }
 
 html {
@@ -31,6 +30,7 @@ html {
   height: 100%;
 
   background: #061329;
+  color: white;
   font-family: "Roboto Mono";
 }
 </style>

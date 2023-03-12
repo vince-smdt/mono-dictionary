@@ -13,6 +13,7 @@
 
 <script>
 export default {
+  name: "SearchBar",
   data() {
     return {
       word: "",
@@ -28,6 +29,7 @@ export default {
   font-size: 20px;
   font-family: "Roboto Mono";
   color: white;
+  transition: background 0.1s ease-in;
 }
 
 #outer-search-bar,

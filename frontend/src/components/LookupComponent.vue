@@ -1,17 +1,18 @@
 <template>
   <main>
     <SearchBar @search="(word) => lookup(word)" />
-    <div id="word-data">{{ word_data }}</div>
+    <WordDefinition :data="word_data" />
   </main>
 </template>
 
 <script>
 import SearchBar from "./SearchBarComponent.vue";
+import WordDefinition from "./WordDefinitionComponent.vue";
 
 export default {
   data() {
     return {
-      word_data: "",
+      word_data: [],
     };
   },
   methods: {
@@ -25,7 +26,7 @@ export default {
       })
         .then((response) => response.json())
         .then((data) => {
-          this.word_data = JSON.stringify(data);
+          this.word_data = data;
         })
         .catch((err) => {
           console.log(err);
@@ -34,6 +35,7 @@ export default {
   },
   components: {
     SearchBar: SearchBar,
+    WordDefinition: WordDefinition,
   },
 };
 </script>
@@ -46,11 +48,5 @@ main {
   align-items: center;
   justify-content: center;
   flex-direction: column;
-}
-
-#word-data {
-  margin: 5px 0;
-  padding: 10px;
-  color: white;
 }
 </style>
