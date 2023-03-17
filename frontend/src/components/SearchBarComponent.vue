@@ -23,6 +23,10 @@ export default {
 </script>
 
 <style scoped>
+#outer-search-bar > * {
+  white-space: nowrap;
+}
+
 #outer-search-bar label,
 #search-bar input,
 #lookup-button {
