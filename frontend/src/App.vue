@@ -12,6 +12,13 @@ export default {
 </script>
 
 <style>
+:root {
+  --background: #061329;
+  --background-hover: #0c2146;
+  --text: white;
+  --border: white;
+}
+
 @font-face {
   font-family: "Roboto Mono";
   src: url(assets/robotomono.ttf);
@@ -29,8 +36,8 @@ html {
 #app {
   height: 100%;
 
-  background: #061329;
-  color: white;
+  background: var(--background);
+  color: var(--text);
   font-family: "Roboto Mono";
 }
 </style>

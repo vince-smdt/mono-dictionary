@@ -28,7 +28,7 @@ export default {
 #lookup-button {
   font-size: 20px;
   font-family: "Roboto Mono";
-  color: white;
+  color: var(--text);
   transition: background 0.1s ease-in;
 }
 
@@ -42,17 +42,17 @@ export default {
 
 #search-bar {
   padding: 5px;
-  border: white solid 2px;
+  border: var(--border) solid 2px;
   border-radius: 5px;
 }
 
 #search-bar:hover {
-  background: #0c2146;
+  background: var(--background-hover);
 }
 
 #search-bar input {
   background: transparent;
-  color: white;
+  color: var(--text);
   border: none;
 }
 
@@ -62,13 +62,13 @@ export default {
 
 #lookup-button {
   background: transparent;
-  border: white solid 2px;
+  border: var(--border) solid 2px;
   border-radius: 5px;
   padding: 5px;
   cursor: pointer;
 }
 
 #lookup-button:hover {
-  background: #0c2146;
+  background: var(--background-hover);
 }
 </style>
