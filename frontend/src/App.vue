@@ -15,6 +15,7 @@ export default {
 :root {
   --background: #061329;
   --background-hover: #0c2146;
+  --background-light: #0c1b36;
   --text: white;
   --border: white;
 }

@@ -9,11 +9,11 @@
       <br />
 
       <!-- Meaning -->
-      <div v-for="meaning in sense.meanings" :key="meaning">
+      <div class="meaning" v-for="meaning in sense.meanings" :key="meaning">
         <em class="part-of-speech">{{ meaning.partOfSpeech }}</em>
 
         <!-- Definition -->
-        <ol>
+        <ul>
           <li v-for="definition in meaning.definitions" :key="definition">
             {{ definition.definition }}
 
@@ -42,7 +42,7 @@
               Example: {{ definition.example }}
             </span>
           </li>
-        </ol>
+        </ul>
 
         <!-- Meaning synonyms -->
         <div v-if="meaning.synonyms.length">
@@ -85,6 +85,9 @@ export default {
 
 .sense {
   margin-bottom: 1em;
+  padding: 1em;
+  border-radius: 10px;
+  background: var(--background-light);
 }
 
 .word {
@@ -99,11 +102,15 @@ export default {
   margin-left: 1em;
 }
 
+.meaning {
+  margin-bottom: 1em;
+}
+
 .part-of-speech {
   font-size: 18px;
 }
 
 li {
-  margin: 0.2em 0 0.2em 3em;
+  margin: 0.3em 0 0.3em 3em;
 }
 </style>
