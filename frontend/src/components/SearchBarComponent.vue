@@ -19,6 +19,11 @@ export default {
       word: "",
     };
   },
+  methods: {
+    update_input(word) {
+      this.word = word
+    }
+  }
 };
 </script>
 

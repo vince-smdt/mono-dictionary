@@ -1,7 +1,7 @@
 <template>
   <main>
-    <SearchBar @search="(word) => lookup(word)" />
-    <WordDefinition :data="word_data" />
+    <SearchBar ref="searchbar" @search="(word) => lookup(word, false)" />
+    <WordDefinition @word-lookup="(word) => lookup(word, true)" :data="word_data" />
   </main>
 </template>
 
@@ -16,7 +16,11 @@ export default {
     };
   },
   methods: {
-    lookup(word) {
+    lookup(word, update_searchbar) {
+      if (update_searchbar) {
+        this.$refs.searchbar.update_input(word)
+      } 
+
       const form_data = new FormData();
       form_data.append("word", word);
 
