@@ -1,12 +1,7 @@
 <template>
   <!-- Sense -->
-  <div
-    v-if="(typeof data === 'object' && data['error'] !== undefined) || !Array.isArray(data)"
-    id="error-div"
-  >
-    <div class="sense">
-      Invalid word!
-    </div>
+  <div v-if="data_valid" id="error-div">
+    <div class="sense">Invalid word!</div>
   </div>
   <div v-else id="word-sense-list">
     <div class="sense" v-for="(sense, index) in data" :key="sense">
@@ -26,23 +21,21 @@
             {{ definition.definition }}
 
             <!-- Definition synonyms -->
-            <div v-if="definition.synonyms.length">
-              Synonyms
-              <ul>
-                <li v-for="synonym in definition.synonyms" :key="synonym">
-                  {{ synonym }}
-                </li>
-              </ul>
+            <div class="definition-synonyms" v-if="definition.synonyms.length">
+              Synonyms:
+              <WordList
+                :data="definition.synonyms"
+                @word-clicked="(synonym) => $emit('word-lookup', synonym)"
+              />
             </div>
 
             <!-- Definition antonyms -->
-            <div v-if="definition.antonyms.length">
-              Antonyms
-              <ul>
-                <li v-for="antonym in definition.antonyms" :key="antonym">
-                  {{ antonym }}
-                </li>
-              </ul>
+            <div class="definition-antonyms" v-if="definition.antonyms.length">
+              Antonyms:
+              <WordList
+                :data="definition.antonyms"
+                @word-clicked="(antonym) => $emit('word-lookup', antonym)"
+              />
             </div>
 
             <!-- Definition example -->
@@ -53,29 +46,21 @@
         </ul>
 
         <!-- Meaning synonyms -->
-        <div class="meaning-synonyms" v-if="meaning.synonyms.length">
+        <div v-if="meaning.synonyms.length">
           Synonyms:
-          <div>
-            <span v-for="(synonym, index) in meaning.synonyms" :key="synonym">
-              <a class="synonym" @click="$emit('word-lookup', synonym)">{{
-                synonym
-              }}</a
-              ><span v-if="index < meaning.synonyms.length - 1">,&nbsp;</span>
-            </span>
-          </div>
+          <WordList
+            :data="meaning.synonyms"
+            @word-clicked="(synonym) => $emit('word-lookup', synonym)"
+          />
         </div>
 
         <!-- Meaning antonyms -->
-        <div class="meaning-antonyms" v-if="meaning.antonyms.length">
+        <div v-if="meaning.antonyms.length">
           Antonyms:
-          <div>
-            <span v-for="(antonym, index) in meaning.antonyms" :key="antonym">
-              <a class="antonym" @click="$emit('word-lookup', antonym)">{{
-                antonym
-              }}</a
-              ><span v-if="index < meaning.antonyms.length - 1">,&nbsp;</span>
-            </span>
-          </div>
+          <WordList
+            :data="meaning.antonyms"
+            @word-clicked="(antonym) => $emit('word-lookup', antonym)"
+          />
         </div>
       </div>
     </div>
@@ -83,10 +68,23 @@
 </template>
 
 <script>
+import WordList from "./WordListComponent.vue";
+
 export default {
   name: "WordDefinition",
   props: {
     data: undefined,
+  },
+  computed: {
+    data_valid() {
+      return (
+        (typeof this.data === "object" && this.data["error"] !== undefined) ||
+        !Array.isArray(this.data)
+      );
+    },
+  },
+  components: {
+    WordList: WordList,
   },
 };
 </script>
@@ -129,6 +127,11 @@ export default {
   margin-bottom: 1em;
 }
 
+.definition-synonyms,
+.definition-antonyms {
+  margin: 0.5em 0;
+}
+
 .example {
   border-left: var(--blockquote) 3px solid;
   background: var(--background-lighter);
@@ -139,19 +142,6 @@ export default {
 .meaning-synonyms,
 .meaning-antonyms {
   margin-bottom: 0.5em;
-}
-
-.synonym,
-.antonym {
-  font-style: italic;
-  text-decoration: underline;
-  cursor: pointer;
-}
-
-.synonym:hover,
-.antonym:hover {
-  transition: color 0.1s ease-in;
-  color: var(--text-hover);
 }
 
 li {

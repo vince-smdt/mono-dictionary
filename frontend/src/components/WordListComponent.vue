@@ -1,0 +1,32 @@
+<template>
+  <div>
+    <span v-for="(word, index) in data" :key="word">
+      <a class="clickable-word" @click="$emit('word-clicked', word)">{{
+        word
+      }}</a
+      ><span v-if="index < data.length - 1">,&nbsp;</span>
+    </span>
+  </div>
+</template>
+
+<script>
+export default {
+  name: "WordList",
+  props: {
+    data: Array,
+  },
+};
+</script>
+
+<style scoped>
+.clickable-word {
+  font-style: italic;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.clickable-word:hover {
+  transition: color 0.1s ease-in;
+  color: var(--text-hover);
+}
+</style>
