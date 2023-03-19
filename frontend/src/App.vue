@@ -13,10 +13,13 @@ export default {
 
 <style>
 :root {
+  --text: white;
+  --text-hover: #c9c9d6;
   --background: #061329;
   --background-hover: #0c2146;
   --background-light: #0c1b36;
-  --text: white;
+  --background-lighter: #132549;
+  --blockquote: #224c94;
   --border: white;
 }
 

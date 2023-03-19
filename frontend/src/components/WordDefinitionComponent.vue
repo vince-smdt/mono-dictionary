@@ -21,7 +21,7 @@
         <em class="part-of-speech">{{ meaning.partOfSpeech }}</em>
 
         <!-- Definition -->
-        <ul>
+        <ul class="definitions">
           <li v-for="definition in meaning.definitions" :key="definition">
             {{ definition.definition }}
 
@@ -46,15 +46,15 @@
             </div>
 
             <!-- Definition example -->
-            <span v-if="'example' in definition">
+            <blockquote class="example" v-if="'example' in definition">
               Example: {{ definition.example }}
-            </span>
+            </blockquote>
           </li>
         </ul>
 
         <!-- Meaning synonyms -->
-        <div v-if="meaning.synonyms.length">
-          Synonyms
+        <div class="meaning-synonyms" v-if="meaning.synonyms.length">
+          Synonyms:
           <div>
             <span v-for="(synonym, index) in meaning.synonyms" :key="synonym">
               <a class="synonym" @click="$emit('word-lookup', synonym)">{{
@@ -66,8 +66,8 @@
         </div>
 
         <!-- Meaning antonyms -->
-        <div v-if="meaning.antonyms.length">
-          Antonyms
+        <div class="meaning-antonyms" v-if="meaning.antonyms.length">
+          Antonyms:
           <div>
             <span v-for="(antonym, index) in meaning.antonyms" :key="antonym">
               <a class="antonym" @click="$emit('word-lookup', antonym)">{{
@@ -125,11 +125,33 @@ export default {
   font-size: 18px;
 }
 
+.definitions {
+  margin-bottom: 1em;
+}
+
+.example {
+  border-left: var(--blockquote) 3px solid;
+  background: var(--background-lighter);
+  padding: 0.5em;
+  margin: 0.4em 0;
+}
+
+.meaning-synonyms,
+.meaning-antonyms {
+  margin-bottom: 0.5em;
+}
+
 .synonym,
 .antonym {
   font-style: italic;
   text-decoration: underline;
   cursor: pointer;
+}
+
+.synonym:hover,
+.antonym:hover {
+  transition: color 0.1s ease-in;
+  color: var(--text-hover);
 }
 
 li {
