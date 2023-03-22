@@ -46,7 +46,7 @@
         </ul>
 
         <!-- Meaning synonyms -->
-        <div v-if="meaning.synonyms.length">
+        <div class="meaning-synonyms" v-if="meaning.synonyms.length">
           Synonyms:
           <WordList
             :data="meaning.synonyms"
@@ -55,7 +55,7 @@
         </div>
 
         <!-- Meaning antonyms -->
-        <div v-if="meaning.antonyms.length">
+        <div class="meaning-antonyms" v-if="meaning.antonyms.length">
           Antonyms:
           <WordList
             :data="meaning.antonyms"
@@ -92,7 +92,8 @@ export default {
 <style scoped>
 #error-div,
 #word-sense-list {
-  max-width: 80em;
+  max-width: 60em;
+  width: 60em;
   margin: 1em;
 }
 
@@ -145,6 +146,7 @@ export default {
 }
 
 li {
-  margin: 0.3em 0 0.3em 3em;
+  list-style-type: circle;
+  margin: 0.5em 0 0.5em 3em;
 }
 </style>
