@@ -1,12 +1,11 @@
 <template>
   <main>
-    <SearchBar
-      v-if="show_search_bar"
-      @search="(word) => lookup(word, false)"
-    />
-    <DottedSpinner v-if="loading" />
+    <!-- TODO - When looking up new word, update search bar content -->
+    <SearchBar class="searchbar" @search="(word) => lookup(word, false)" />
+    <DottedSpinner class="spinner hidden" style="display: none" />
     <WordDefinition
-      v-if="show_definition"
+      class="word-definition hidden"
+      style="display: none"
       @word-lookup="(word) => lookup(word, true)"
       :data="word_data"
     />
@@ -17,21 +16,23 @@
 import SearchBar from "./SearchBarComponent.vue";
 import DottedSpinner from "./DottedSpinnerComponent.vue";
 import WordDefinition from "./WordDefinitionComponent.vue";
+import $ from "jquery";
 
 export default {
   data() {
     return {
       word_data: [],
-      show_search_bar: true,
-      loading: false,
-      show_definition: false,
+      ANIMATION_TIME: 500,
     };
   },
   methods: {
+    async sleep(ms) {
+      return new Promise((resolve) => setTimeout(resolve, ms));
+    },
     async lookup(word) {
-      this.show_search_bar = false;
-      this.loading = true;
-      this.show_definition = false;
+      await this.set_class_visiblity("word-definition", false, false);
+      await this.set_class_visiblity("searchbar", false);
+      await this.set_class_visiblity("spinner", true);
 
       const form_data = new FormData();
       form_data.append("word", word);
@@ -43,15 +44,31 @@ export default {
         .then((response) => response.json())
         .then((data) => {
           this.word_data = data;
-          this.show_definition = true;
         })
         .catch((err) => {
           console.log(err);
         })
-        .finally(() => {
-          this.show_search_bar = true;
-          this.loading = false;
+        .finally(async () => {
+          await this.set_class_visiblity("spinner", false);
+          await this.set_class_visiblity("searchbar", true, false);
+          await this.set_class_visiblity("word-definition", true, false);
         });
+    },
+    async set_class_visiblity(component_class, show, wait = true) {
+      const SELECTOR = "." + component_class;
+
+      if (show) $(SELECTOR).show();
+
+      $(SELECTOR).toggleClass("hidden", !show);
+
+      if (!show) {
+        // Stop rendering component when animation stops
+        setTimeout(() => {
+          $(SELECTOR).hide();
+        }, this.ANIMATION_TIME);
+      }
+
+      if (wait) await this.sleep(this.ANIMATION_TIME);
     },
   },
   components: {
@@ -65,10 +82,24 @@ export default {
 <style scoped>
 main {
   min-height: 100vh;
-
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
+}
+
+.searchbar {
+  margin: 2em;
+}
+
+.searchbar,
+.spinner,
+.word-definition {
+  transition: all 0.5s ease-out;
+}
+
+.hidden {
+  transform: translate(0, 100px);
+  opacity: 0;
 }
 </style>
