@@ -46,8 +46,7 @@ export default {
           this.word_data = data;
         })
         .catch((err) => {
-          // TODO - show error message, currently juste reshowing previous word definition
-          console.log(err);
+          this.word_data = { error: err };
         })
         .finally(async () => {
           await this.set_class_visibility("spinner", false);
