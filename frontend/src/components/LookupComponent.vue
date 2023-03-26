@@ -1,7 +1,6 @@
 <template>
   <main>
-    <!-- TODO - When looking up new word, update search bar content -->
-    <SearchBar class="searchbar" @search="(word) => lookup(word, false)" />
+    <SearchBar ref="searchbar" class="searchbar" @search="(word) => lookup(word, false)" />
     <DottedSpinner class="spinner hidden" style="display: none" />
     <WordDefinition
       class="word-definition hidden"
@@ -30,6 +29,8 @@ export default {
       return new Promise((resolve) => setTimeout(resolve, ms));
     },
     async lookup(word) {
+      this.$refs.searchbar.update_input(word);
+
       await this.set_class_visibility("word-definition", false, false);
       await this.set_class_visibility("searchbar", false);
       await this.set_class_visibility("spinner", true);
