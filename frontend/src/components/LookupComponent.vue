@@ -30,9 +30,9 @@ export default {
       return new Promise((resolve) => setTimeout(resolve, ms));
     },
     async lookup(word) {
-      await this.set_class_visiblity("word-definition", false, false);
-      await this.set_class_visiblity("searchbar", false);
-      await this.set_class_visiblity("spinner", true);
+      await this.set_class_visibility("word-definition", false, false);
+      await this.set_class_visibility("searchbar", false);
+      await this.set_class_visibility("spinner", true);
 
       const form_data = new FormData();
       form_data.append("word", word);
@@ -46,15 +46,16 @@ export default {
           this.word_data = data;
         })
         .catch((err) => {
+          // TODO - show error message, currently juste reshowing previous word definition
           console.log(err);
         })
         .finally(async () => {
-          await this.set_class_visiblity("spinner", false);
-          await this.set_class_visiblity("searchbar", true, false);
-          await this.set_class_visiblity("word-definition", true, false);
+          await this.set_class_visibility("spinner", false);
+          await this.set_class_visibility("searchbar", true, false);
+          await this.set_class_visibility("word-definition", true, false);
         });
     },
-    async set_class_visiblity(component_class, show, wait = true) {
+    async set_class_visibility(component_class, show, wait = true) {
       const SELECTOR = "." + component_class;
 
       if (show) $(SELECTOR).show();

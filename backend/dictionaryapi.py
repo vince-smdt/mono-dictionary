@@ -7,7 +7,7 @@ def fetch_word(word : str):
         return INVALID_MESSAGE
     
     # Finding word info with api call
-    word = word.replace(' ', '%20')
+    word = word.strip().replace(' ', '%20')
     # Add option to choose language
     payload = api.get("https://api.dictionaryapi.dev/api/v2/entries/en/" + word)
     data = payload.json()

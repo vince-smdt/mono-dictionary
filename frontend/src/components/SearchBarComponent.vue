@@ -5,15 +5,21 @@
       <img src="../assets/search.svg" alt="Search Icon" />
       <input type="text" v-model="word" />
     </div>
-    <button type="button" id="lookup-button" @click="$emit('search', word)">
-      Look up
-    </button>
+    <button type="button" id="lookup-button" @click="search">Look up</button>
   </div>
 </template>
 
 <script>
 export default {
   name: "SearchBar",
+  mounted() {
+    const searchbar = document.getElementById("search-bar");
+    searchbar.addEventListener("keydown", (e) => {
+      if (e.key === "Enter") {
+        this.search();
+      }
+    });
+  },
   data() {
     return {
       word: "",
@@ -21,9 +27,12 @@ export default {
   },
   methods: {
     update_input(word) {
-      this.word = word
-    }
-  }
+      this.word = word;
+    },
+    search() {
+      this.$emit("search", this.word);
+    },
+  },
 };
 </script>
 
