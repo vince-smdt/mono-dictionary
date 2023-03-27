@@ -1,6 +1,10 @@
 <template>
   <main>
-    <SearchBar ref="searchbar" class="searchbar" @search="(word) => lookup(word, false)" />
+    <SearchBar
+      ref="searchbar"
+      class="searchbar"
+      @search="(word) => lookup(word, false)"
+    />
     <DottedSpinner class="spinner hidden" style="display: none" />
     <WordDefinition
       class="word-definition hidden"
@@ -23,6 +27,9 @@ export default {
       word_data: [],
       ANIMATION_TIME: 500,
     };
+  },
+  mounted() {
+    this.focus_searchbar();
   },
   methods: {
     async sleep(ms) {
@@ -53,6 +60,7 @@ export default {
           await this.set_class_visibility("spinner", false);
           await this.set_class_visibility("searchbar", true, false);
           await this.set_class_visibility("word-definition", true, false);
+          this.focus_searchbar();
         });
     },
     async set_class_visibility(component_class, show, wait = true) {
@@ -70,6 +78,9 @@ export default {
       }
 
       if (wait) await this.sleep(this.ANIMATION_TIME);
+    },
+    focus_searchbar() {
+      this.$refs.searchbar.focus();
     },
   },
   components: {

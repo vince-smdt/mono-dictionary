@@ -7,8 +7,9 @@ def fetch_word(word : str):
         return INVALID_MESSAGE
     
     # Finding word info with api call
+    # TODO - Replace apostrophe with right symbol in url
     word = word.strip().replace(' ', '%20')
-    # Add option to choose language
+    # TODO - Add option to choose language
     payload = api.get("https://api.dictionaryapi.dev/api/v2/entries/en/" + word)
     data = payload.json()
 

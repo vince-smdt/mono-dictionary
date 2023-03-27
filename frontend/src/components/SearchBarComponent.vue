@@ -3,7 +3,7 @@
     <label>Word to lookup: </label>
     <div id="search-bar">
       <img src="../assets/search.svg" alt="Search Icon" />
-      <input type="text" v-model="word" />
+      <input ref="searchbar-input" type="text" v-model="word" />
     </div>
     <button type="button" id="lookup-button" @click="search">Look up</button>
   </div>
@@ -32,6 +32,9 @@ export default {
     search() {
       this.$emit("search", this.word);
     },
+    focus() {
+      this.$refs["searchbar-input"].focus();
+    }
   },
 };
 </script>
