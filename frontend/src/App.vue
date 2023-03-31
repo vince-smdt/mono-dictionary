@@ -1,42 +1,56 @@
 <template>
   <div id="app">
-    <router-view />
+    <NavBar />
+    <router-view id="router-view" />
+    <FooterBar />
   </div>
 </template>
 
 <script>
+import NavBar from "./components/NavBarComponent.vue";
+import FooterBar from "./components/FooterBarComponent.vue";
+
 export default {
   name: "App",
-  components: {},
+  components: {
+    NavBar: NavBar,
+    FooterBar: FooterBar,
+  },
 };
 </script>
 
 <style>
+:root {
+  --nav-bar-height: 3em;
+}
 
 :root {
-    --text: black;
-    --text-hover: #4d4d5b;
-    --background: white;
-    --background-light: #eeeeee;
-    --background-lighter: #cccccc;
-    --background-hover: #e6e6e6;
-    --blockquote: #848484;
-    --border: black;
-  }
+  --text: black;
+  --text-hover: #4d4d5b;
+  --background: white;
+  --background-hover: #e6e6e6;
+  --background-light: #eeeeee;
+  --background-lighter: #d5d5d5;
+  --background-nav: #ededed;
+  --background-footer: #ededed;
+  --blockquote: #848484;
+  --border: black;
+}
 
 @media (prefers-color-scheme: dark) {
   :root {
     --text: white;
     --text-hover: #c9c9d6;
-    --background: #061329;
-    --background-light: #0c1b36;
-    --background-lighter: #132549;
-    --background-hover: #0c2146;
-    --blockquote: #224c94;
+    --background: #000000;
+    --background-hover: #1d1d1d;
+    --background-light: #181818;
+    --background-lighter: #222222;
+    --background-nav: #0c0c0c;
+    --background-footer: #0c0c0c;
+    --blockquote: #929292;
     --border: white;
   }
 }
-
 
 @font-face {
   font-family: "Roboto Mono";
@@ -52,11 +66,18 @@ html {
   height: 100%;
 }
 
+svg {
+  fill: var(--text);
+}
+
 #app {
   height: 100%;
-
   background: var(--background);
   color: var(--text);
   font-family: "Roboto Mono";
+}
+
+#router-view {
+  margin-bottom: 3em;
 }
 </style>

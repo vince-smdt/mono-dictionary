@@ -83,10 +83,6 @@ export default {
   outline: none;
 }
 
-svg {
-  fill: var(--text);
-}
-
 #lookup-button {
   background: transparent;
   border: var(--border) solid 2px;

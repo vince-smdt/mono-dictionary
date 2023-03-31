@@ -8,7 +8,6 @@
     <DottedSpinner class="spinner hidden" style="display: none" />
     <WordDefinition
       class="word-definition hidden"
-      style="display: none"
       @word-lookup="(word) => lookup(word, true)"
       :data="word_data"
     />
@@ -38,12 +37,18 @@ export default {
     async lookup(word) {
       this.$refs.searchbar.update_input(word);
 
-      await this.set_class_visibility("word-definition", false, false);
+      await this.set_class_visibility("word-definition", false, false, false);
       await this.set_class_visibility("searchbar", false);
+
+      // Empty word data to avoid spinner misplacement
+      this.word_data = "";
+
       await this.set_class_visibility("spinner", true);
 
       const form_data = new FormData();
       form_data.append("word", word);
+
+      let data_holder;
 
       fetch("http://localhost:5000", {
         method: "POST",
@@ -51,26 +56,30 @@ export default {
       })
         .then((response) => response.json())
         .then((data) => {
-          this.word_data = data;
+          data_holder = data;
         })
         .catch((err) => {
           this.word_data = { error: err };
         })
         .finally(async () => {
           await this.set_class_visibility("spinner", false);
+
+          // Assign data after spinner animation end to avoid janky spinner movement
+          this.word_data = data_holder;
+
           await this.set_class_visibility("searchbar", true, false);
           await this.set_class_visibility("word-definition", true, false);
           this.focus_searchbar();
         });
     },
-    async set_class_visibility(component_class, show, wait = true) {
+    async set_class_visibility(component_class, show, wait = true, display_none = true) {
       const SELECTOR = "." + component_class;
 
       if (show) $(SELECTOR).show();
 
       $(SELECTOR).toggleClass("hidden", !show);
 
-      if (!show) {
+      if (!show && display_none) {
         // Stop rendering component when animation stops
         setTimeout(() => {
           $(SELECTOR).hide();
@@ -93,7 +102,7 @@ export default {
 
 <style scoped>
 main {
-  min-height: 100vh;
+  min-height: calc(100vh - var(--nav-bar-height));
   display: flex;
   align-items: center;
   justify-content: center;
@@ -108,6 +117,10 @@ main {
 .spinner,
 .word-definition {
   transition: all 0.5s ease-out;
+}
+
+.word-definition {
+  min-height: 5em;
 }
 
 .hidden {
