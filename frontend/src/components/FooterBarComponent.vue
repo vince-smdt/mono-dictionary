@@ -12,7 +12,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 footer {
   background: var(--background-footer);
   padding: 4em;

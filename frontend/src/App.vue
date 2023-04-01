@@ -32,6 +32,8 @@ export default {
   --background-light: #eeeeee;
   --background-lighter: #d5d5d5;
   --background-nav: #ededed;
+  --background-nav-dropdown: #e2e2e2;
+  --background-nav-dropdown-hover: #d4d4d4;
   --background-footer: #ededed;
   --blockquote: #848484;
   --border: black;
@@ -45,7 +47,9 @@ export default {
     --background-hover: #1d1d1d;
     --background-light: #181818;
     --background-lighter: #222222;
-    --background-nav: #0c0c0c;
+    --background-nav: #282828;
+    --background-nav-dropdown: #3d3d3d;
+    --background-nav-dropdown-hover: #5f5f5f;
     --background-footer: #0c0c0c;
     --blockquote: #929292;
     --border: white;
