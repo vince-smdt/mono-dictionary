@@ -21,14 +21,14 @@ export default {
 
 ul {
   list-style: none;
-  background: brightness($main-color, 25%);
+  background: var(--main-color-25);
   border-radius: 5px;
   overflow: hidden;
   li {
     padding: 0.5em 1em;
     cursor: pointer;
     &:hover {
-      background: brightness($main-color, 35%);
+      background: var(--main-color-35);
     }
   }
 }

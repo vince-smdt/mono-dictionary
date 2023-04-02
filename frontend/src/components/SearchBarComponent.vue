@@ -54,7 +54,7 @@ export default {
 #lookup-button {
   font-size: 20px;
   font-family: "Roboto Mono";
-  color: $secondary-color;
+  color: var(--secondary-color);
 }
 
 #outer-search-bar,
@@ -67,15 +67,15 @@ export default {
 
 #search-bar {
   padding: 5px;
-  border: $secondary-color solid 2px;
+  border: var(--secondary-color) solid 2px;
   border-radius: 5px;
   transition: background 0.15s ease-in;
   &:hover {
-    background: brightness($main-color, 10%);
+    background: var(--main-color-10);
   }
   input {
     background: transparent;
-    color: $secondary-color;
+    color: var(--secondary-color);
     border: none;
     &:focus {
       outline: none;
@@ -84,15 +84,15 @@ export default {
 }
 
 #lookup-button {
-  color: $secondary-color;
+  color: var(--secondary-color);
   background: transparent;
-  border: $secondary-color solid 2px;
+  border: var(--secondary-color) solid 2px;
   border-radius: 5px;
   padding: 5px;
   cursor: pointer;
   transition: background 0.15s ease-in;
   &:hover {
-    background: brightness($main-color, 10%);
+    background: var(--main-color-10);
   }
 }
 </style>

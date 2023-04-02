@@ -39,7 +39,7 @@ export default {
 @import "../assets/scss/functions.scss";
 
 nav {
-  background: brightness($main-color, 10%);
+  background: var(--main-color-10);
   height: $header-height;
   display: flex;
   padding: 0 2em;
@@ -55,7 +55,7 @@ nav {
   justify-content: center;
   align-items: center;
   &:hover {
-    background: brightness($main-color, 20%);
+    background: var(--main-color-20);
   }
 }
 

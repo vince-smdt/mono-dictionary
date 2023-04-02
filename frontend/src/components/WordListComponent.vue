@@ -28,7 +28,7 @@ export default {
   cursor: pointer;
   &:hover {
     transition: color 0.1s ease-in;
-    color: brightness($secondary-color, -15%);
+    color: var(--secondary-color-15);
   }
 }
 </style>

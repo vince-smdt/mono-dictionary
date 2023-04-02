@@ -25,7 +25,7 @@ $lefts: 66px, 62px, 52px, 37px, 22px, 11px, 7px, 11px, 22px, 37px, 52px, 62px;
     position: absolute;
     width: 6px;
     height: 6px;
-    background: $secondary-color;
+    background: var(--secondary-color);
     border-radius: 50%;
     animation: lds-default 1.2s linear infinite;
     @for $i from 1 through 12 {

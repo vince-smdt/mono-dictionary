@@ -1,7 +1,15 @@
-// Theme colors
-$main-color: rgb(24, 125, 93);
-$secondary-color: rgb(255, 255, 255);
-$lcd: 1; // Lightness change direction (1 = increase, -1 = decrease)
+// Themes
+$light-theme: (
+  main-color: rgb(255, 255, 255),
+  secondary-color: rgb(0, 0, 0),
+  lcd: -1,
+);
+
+$dark-theme: (
+  main-color: rgb(0, 0, 0),
+  secondary-color: rgb(255, 255, 255),
+  lcd: 1,
+);
 
 // Global variables
 $header-height: 3em;

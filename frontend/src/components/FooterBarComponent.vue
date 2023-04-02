@@ -17,7 +17,7 @@ export default {
 @import "../assets/scss/functions.scss";
 
 footer {
-  background: brightness($main-color, 10%);
+  background: var(--main-color-10);
   padding: 4em;
 }
 </style>

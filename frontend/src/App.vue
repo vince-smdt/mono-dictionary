@@ -22,6 +22,36 @@ export default {
 <style lang="scss">
 @import "./assets/scss/variables.scss";
 
+:root {
+  $main-color: map-get($light-theme, main-color);
+  $secondary-color: map-get($light-theme, secondary-color);
+  $lcd: map-get($light-theme, lcd);
+
+  --main-color: #{$main-color};
+  --secondary-color: #{$secondary-color};
+
+  @for $i from 1 through 10 {
+    --main-color-#{$i * 5}: #{scale-color($main-color, $lightness: $i * 5% * $lcd)};
+    --secondary-color-#{$i * 5}: #{scale-color($secondary-color, $lightness: $i * 5% * -$lcd)};
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    $main-color: map-get($dark-theme, main-color);
+    $secondary-color: map-get($dark-theme, secondary-color);
+    $lcd: map-get($dark-theme, lcd);
+
+    --main-color: #{$main-color};
+    --secondary-color: #{$secondary-color};
+
+    @for $i from 1 through 10 {
+      --main-color-#{$i * 5}: #{scale-color($main-color, $lightness: $i * 5% * $lcd)};
+      --secondary-color-#{$i * 5}: #{scale-color($secondary-color, $lightness: $i * 5% * -$lcd)};
+    }
+  }
+}
+
 @font-face {
   font-family: "Roboto Mono";
   src: url(assets/fonts/robotomono.ttf);
@@ -37,13 +67,13 @@ html {
 }
 
 svg {
-  fill: $secondary-color;
+  fill: var(--secondary-color);
 }
 
 #app {
   height: 100%;
-  background: $main-color;
-  color: $secondary-color;
+  background: var(--main-color);
+  color: var(--secondary-color);
   font-family: "Roboto Mono";
 }
 

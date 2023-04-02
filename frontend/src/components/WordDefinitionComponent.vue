@@ -108,7 +108,7 @@ export default {
     margin-bottom: 1em;
     padding: 1em;
     border-radius: 10px;
-    background: brightness($main-color, 10%);
+    background: var(--main-color-10);
     .word {
       font-size: 24px;
     }
@@ -130,8 +130,8 @@ export default {
           margin: 0.5em 0;
         }
         .example {
-          border-left: brightness($main-color, 50%) 3px solid;
-          background: brightness($main-color, 20%);
+          border-left: var(--main-color-50) 3px solid;
+          background: var(--main-color-20);
           padding: 0.5em;
           margin: 0.4em 0;
         }
