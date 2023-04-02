@@ -24,14 +24,12 @@ ul {
   background: brightness($main-color, 25%);
   border-radius: 5px;
   overflow: hidden;
-}
-
-li {
-  padding: 0.5em 1em;
-  cursor: pointer;
-}
-
-li:hover {
-  background: brightness($main-color, 35%);
+  li {
+    padding: 0.5em 1em;
+    cursor: pointer;
+    &:hover {
+      background: brightness($main-color, 35%);
+    }
+  }
 }
 </style>

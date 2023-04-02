@@ -99,56 +99,48 @@ export default {
   width: 60em;
 }
 
-.sense {
-  margin-bottom: 1em;
-  padding: 1em;
-  border-radius: 10px;
-  background: brightness($main-color, 10%);
-}
-
-.word {
-  font-size: 24px;
-}
-
-.sense-index {
-  margin-left: 0.5em;
-}
-
-.phonetic {
-  margin-left: 1em;
-}
-
-.meaning {
-  margin-bottom: 1em;
-}
-
-.part-of-speech {
-  font-size: 18px;
-}
-
-.definitions {
-  margin-bottom: 1em;
-}
-
-.definition-synonyms,
-.definition-antonyms {
-  margin: 0.5em 0;
-}
-
-.example {
-  border-left: brightness($main-color, 50%) 3px solid;
-  background: brightness($main-color, 20%);
-  padding: 0.5em;
-  margin: 0.4em 0;
-}
-
-.meaning-synonyms,
-.meaning-antonyms {
-  margin-bottom: 0.5em;
-}
-
-li {
-  list-style-type: circle;
-  margin: 0.5em 0 0.5em 3em;
+#word-sense-list {
+  li {
+    list-style-type: circle;
+    margin: 0.5em 0 0.5em 3em;
+  }
+  .sense {
+    margin-bottom: 1em;
+    padding: 1em;
+    border-radius: 10px;
+    background: brightness($main-color, 10%);
+    .word {
+      font-size: 24px;
+    }
+    .sense-index {
+      margin-left: 0.5em;
+    }
+    .phonetic {
+      margin-left: 1em;
+    }
+    .meaning {
+      margin-bottom: 1em;
+      .part-of-speech {
+        font-size: 18px;
+      }
+      .definitions {
+        margin-bottom: 1em;
+        .definition-synonyms,
+        .definition-antonyms {
+          margin: 0.5em 0;
+        }
+        .example {
+          border-left: brightness($main-color, 50%) 3px solid;
+          background: brightness($main-color, 20%);
+          padding: 0.5em;
+          margin: 0.4em 0;
+        }
+      }
+      .meaning-synonyms,
+      .meaning-antonyms {
+        margin-bottom: 0.5em;
+      }
+    }
+  }
 }
 </style>

@@ -70,20 +70,17 @@ export default {
   border: $secondary-color solid 2px;
   border-radius: 5px;
   transition: background 0.15s ease-in;
-}
-
-#search-bar:hover {
-  background: brightness($main-color, 10%);
-}
-
-#search-bar input {
-  background: transparent;
-  color: $secondary-color;
-  border: none;
-}
-
-#search-bar input:focus {
-  outline: none;
+  &:hover {
+    background: brightness($main-color, 10%);
+  }
+  input {
+    background: transparent;
+    color: $secondary-color;
+    border: none;
+    &:focus {
+      outline: none;
+    }
+  }
 }
 
 #lookup-button {
@@ -94,9 +91,8 @@ export default {
   padding: 5px;
   cursor: pointer;
   transition: background 0.15s ease-in;
-}
-
-#lookup-button:hover {
-  background: brightness($main-color, 10%);
+  &:hover {
+    background: brightness($main-color, 10%);
+  }
 }
 </style>

@@ -26,10 +26,9 @@ export default {
   font-style: italic;
   text-decoration: underline;
   cursor: pointer;
-}
-
-.clickable-word:hover {
-  transition: color 0.1s ease-in;
-  color: brightness($secondary-color, -15%);
+  &:hover {
+    transition: color 0.1s ease-in;
+    color: brightness($secondary-color, -15%);
+  }
 }
 </style>

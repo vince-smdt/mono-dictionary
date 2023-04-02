@@ -54,10 +54,9 @@ nav {
   display: flex;
   justify-content: center;
   align-items: center;
-}
-
-#theme-icon:hover {
-  background: brightness($main-color, 20%);
+  &:hover {
+    background: brightness($main-color, 20%);
+  }
 }
 
 #themes-dropdown {
