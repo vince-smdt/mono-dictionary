@@ -89,7 +89,10 @@ export default {
 };
 </script>
 
-<style scoped>
+<style scoped lang="scss">
+@import "../assets/scss/variables.scss";
+@import "../assets/scss/functions.scss";
+
 #error-div,
 #word-sense-list {
   max-width: 60em;
@@ -100,7 +103,7 @@ export default {
   margin-bottom: 1em;
   padding: 1em;
   border-radius: 10px;
-  background: var(--background-light);
+  background: brightness($main-color, 10%);
 }
 
 .word {
@@ -133,8 +136,8 @@ export default {
 }
 
 .example {
-  border-left: var(--blockquote) 3px solid;
-  background: var(--background-lighter);
+  border-left: brightness($main-color, 50%) 3px solid;
+  background: brightness($main-color, 20%);
   padding: 0.5em;
   margin: 0.4em 0;
 }

@@ -34,10 +34,13 @@ export default {
 };
 </script>
 
-<style scoped>
+<style scoped lang="scss">
+@import "../assets/scss/variables.scss";
+@import "../assets/scss/functions.scss";
+
 nav {
-  background: var(--background-nav);
-  height: var(--nav-bar-height);
+  background: brightness($main-color, 10%);
+  height: $header-height;
   display: flex;
   padding: 0 2em;
   justify-content: space-between;
@@ -46,7 +49,7 @@ nav {
 
 #theme-icon {
   height: 100%;
-  padding: 0 calc(var(--nav-bar-height) / 2);
+  padding: 0 calc($header-height / 2);
   cursor: pointer;
   display: flex;
   justify-content: center;
@@ -54,11 +57,11 @@ nav {
 }
 
 #theme-icon:hover {
-  background: var(--background-nav-dropdown);
+  background: brightness($main-color, 20%);
 }
 
 #themes-dropdown {
   position: absolute;
-  transform: translate(-50%, calc(50% + calc(var(--nav-bar-height) / 3)));
+  transform: translate(-50%, calc(50% + calc($header-height / 3)));
 }
 </style>

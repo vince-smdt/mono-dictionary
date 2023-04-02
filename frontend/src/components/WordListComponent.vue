@@ -18,7 +18,10 @@ export default {
 };
 </script>
 
-<style scoped>
+<style scoped lang="scss">
+@import "../assets/scss/variables.scss";
+@import "../assets/scss/functions.scss";
+
 .clickable-word {
   font-style: italic;
   text-decoration: underline;
@@ -27,6 +30,6 @@ export default {
 
 .clickable-word:hover {
   transition: color 0.1s ease-in;
-  color: var(--text-hover);
+  color: brightness($secondary-color, -15%);
 }
 </style>

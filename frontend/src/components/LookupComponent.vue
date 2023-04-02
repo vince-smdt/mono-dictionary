@@ -100,9 +100,11 @@ export default {
 };
 </script>
 
-<style scoped>
+<style scoped lang="scss">
+@import "../assets/scss/variables.scss";
+
 main {
-  min-height: calc(100vh - var(--nav-bar-height));
+  min-height: calc(100vh - $header-height);
   display: flex;
   align-items: center;
   justify-content: center;

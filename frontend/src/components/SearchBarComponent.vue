@@ -41,7 +41,10 @@ export default {
 };
 </script>
 
-<style scoped>
+<style scoped lang="scss">
+@import "../assets/scss/variables.scss";
+@import "../assets/scss/functions.scss";
+
 #outer-search-bar > * {
   white-space: nowrap;
 }
@@ -51,8 +54,7 @@ export default {
 #lookup-button {
   font-size: 20px;
   font-family: "Roboto Mono";
-  color: var(--text);
-  transition: background 0.1s ease-in;
+  color: $secondary-color;
 }
 
 #outer-search-bar,
@@ -65,17 +67,18 @@ export default {
 
 #search-bar {
   padding: 5px;
-  border: var(--border) solid 2px;
+  border: $secondary-color solid 2px;
   border-radius: 5px;
+  transition: background 0.15s ease-in;
 }
 
 #search-bar:hover {
-  background: var(--background-hover);
+  background: brightness($main-color, 10%);
 }
 
 #search-bar input {
   background: transparent;
-  color: var(--text);
+  color: $secondary-color;
   border: none;
 }
 
@@ -84,14 +87,16 @@ export default {
 }
 
 #lookup-button {
+  color: $secondary-color;
   background: transparent;
-  border: var(--border) solid 2px;
+  border: $secondary-color solid 2px;
   border-radius: 5px;
   padding: 5px;
   cursor: pointer;
+  transition: background 0.15s ease-in;
 }
 
 #lookup-button:hover {
-  background: var(--background-hover);
+  background: brightness($main-color, 10%);
 }
 </style>

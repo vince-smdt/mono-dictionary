@@ -15,10 +15,13 @@ export default {
 };
 </script>
 
-<style scoped>
+<style scoped lang="scss">
+@import "../assets/scss/variables.scss";
+@import "../assets/scss/functions.scss";
+
 ul {
   list-style: none;
-  background: var(--background-nav-dropdown);
+  background: brightness($main-color, 25%);
   border-radius: 5px;
   overflow: hidden;
 }
@@ -29,6 +32,6 @@ li {
 }
 
 li:hover {
-  background: var(--background-nav-dropdown-hover);
+  background: brightness($main-color, 35%);
 }
 </style>

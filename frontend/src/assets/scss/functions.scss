@@ -1,0 +1,5 @@
+@import "./variables.scss";
+
+@function brightness($color, $brightness) {
+  @return scale-color($color, $lightness: $brightness * $lcd);
+}

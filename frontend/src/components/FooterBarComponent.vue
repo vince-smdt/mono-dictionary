@@ -6,15 +6,18 @@
   </footer>
 </template>
 
-<script>
+<script scoped>
 export default {
   name: "FooterBar",
 };
 </script>
 
-<style scoped>
+<style scoped lang="scss">
+@import "../assets/scss/variables.scss";
+@import "../assets/scss/functions.scss";
+
 footer {
-  background: var(--background-footer);
+  background: brightness($main-color, 10%);
   padding: 4em;
 }
 </style>

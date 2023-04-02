@@ -21,7 +21,9 @@ export default {
 };
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+@import "../assets/scss/variables.scss";
+
 .lds-default {
   display: inline-block;
   position: relative;
@@ -33,7 +35,7 @@ export default {
   position: absolute;
   width: 6px;
   height: 6px;
-  background: var(--text);
+  background: $secondary-color;
   border-radius: 50%;
   animation: lds-default 1.2s linear infinite;
 }
