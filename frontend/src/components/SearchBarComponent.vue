@@ -71,7 +71,7 @@ export default {
   border-radius: 5px;
   transition: background 0.15s ease-in;
   &:hover {
-    background: var(--main-color-10);
+    background: var(--main-color-5);
   }
   input {
     background: transparent;
@@ -92,7 +92,7 @@ export default {
   cursor: pointer;
   transition: background 0.15s ease-in;
   &:hover {
-    background: var(--main-color-10);
+    background: var(--main-color-5);
   }
 }
 </style>

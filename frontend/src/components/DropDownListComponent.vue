@@ -1,6 +1,6 @@
 <template>
   <ul>
-    <li v-for="item in items" :key="item">
+    <li v-for="item in items" :key="item" @click="$emit('item-click', item)">
       {{ item }}
     </li>
   </ul>

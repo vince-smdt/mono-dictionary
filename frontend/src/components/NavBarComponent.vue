@@ -12,7 +12,8 @@
       >
         <path d="M8 15A7 7 0 1 0 8 1v14zm0 1A8 8 0 1 1 8 0a8 8 0 0 1 0 16z" />
       </svg>
-      <DropDownList v-if="show_themes" id="themes-dropdown" :items="themes" />
+      <!-- TODO - Remove drop down list when not focused, clicked somewhere else -->
+      <DropDownList v-if="show_themes" id="themes-dropdown" :items="themes" @item-click="(theme) => $emit('change-theme', theme)" />
     </div>
   </nav>
 </template>
@@ -25,11 +26,13 @@ export default {
   data() {
     return {
       show_themes: false,
-      themes: ["Light", "Dark", "Tropical", "Solarized"],
     };
   },
   components: {
     DropDownList: DropDownList,
+  },
+  props: {
+    themes: Array,
   },
 };
 </script>
@@ -39,7 +42,7 @@ export default {
 @import "../assets/scss/functions.scss";
 
 nav {
-  background: var(--main-color-10);
+  background: var(--main-color-5);
   height: $header-height;
   display: flex;
   padding: 0 2em;

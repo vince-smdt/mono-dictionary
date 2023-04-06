@@ -1,14 +1,25 @@
 // Themes
-$light-theme: (
-  main-color: rgb(255, 255, 255),
-  secondary-color: rgb(0, 0, 0),
-  lcd: -1,
-);
-
-$dark-theme: (
-  main-color: rgb(0, 0, 0),
-  secondary-color: rgb(255, 255, 255),
-  lcd: 1,
+$themes: (
+  light: (
+    main-color: rgb(255, 255, 255),
+    secondary-color: rgb(0, 0, 0),
+    lcd: -1,
+  ),
+  dark: (
+    main-color: rgb(0, 0, 0),
+    secondary-color: rgb(255, 255, 255),
+    lcd: 1,
+  ),
+  tropical: (
+    main-color: rgb(249, 107, 112),
+    secondary-color: rgb(252, 231, 125),
+    lcd: -1,
+  ),
+  solarized: (
+    main-color: rgb(249, 235, 222),
+    secondary-color: rgb(129, 88, 84),
+    lcd: -1,
+  ),
 );
 
 // Global variables
