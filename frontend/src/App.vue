@@ -10,12 +10,25 @@
 <script>
 import NavBar from "./components/NavBarComponent.vue";
 import FooterBar from "./components/FooterBarComponent.vue";
-import { themes } from "./assets/scss/themes.module.scss";
+import themes from "./assets/scss/themes.module.scss";
 
 export default {
   name: "App",
   mounted() {
-    this.themes = themes.split(" ");
+    // Process theme info
+    let processed_themes = {};
+
+    Object.keys(themes).forEach((name) => {
+      let theme_info = themes[name].split(", ");
+
+      // Dict with css properties passed to each drop down item to style them
+      processed_themes[name] = {
+        background: theme_info[0],
+        color: theme_info[1],
+      };
+    });
+
+    this.themes = processed_themes;
   },
   data() {
     return {

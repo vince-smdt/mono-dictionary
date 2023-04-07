@@ -2,5 +2,7 @@
 @import "./variables.scss";
 
 :export {
-  themes: to-list($themes, "keys");
+  @each $name, $theme in $themes {
+    #{$name}: (#{map-get($theme, main-color)}, #{map-get($theme, secondary-color)});
+  };
 }

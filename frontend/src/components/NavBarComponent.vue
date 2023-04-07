@@ -32,7 +32,7 @@ export default {
     DropDownList: DropDownList,
   },
   props: {
-    themes: Array,
+    themes: Object,
   },
 };
 </script>

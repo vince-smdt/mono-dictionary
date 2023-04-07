@@ -20,6 +20,7 @@
           <li v-for="definition in meaning.definitions" :key="definition">
             {{ definition.definition }}
 
+            <!-- TODO - synonyms and antonyms don't wrap but overflow instead, make them wrap -->
             <!-- Definition synonyms -->
             <div class="definition-synonyms" v-if="definition.synonyms.length">
               Synonyms:

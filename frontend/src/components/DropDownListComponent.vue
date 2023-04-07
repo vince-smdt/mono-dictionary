@@ -1,7 +1,12 @@
 <template>
   <ul>
-    <li v-for="item in items" :key="item" @click="$emit('item-click', item)">
-      {{ item }}
+    <li
+      v-for="(style, name) in items"
+      :key="name"
+      @click="$emit('item-click', name)"
+      :style="style"
+    >
+      {{ name }}
     </li>
   </ul>
 </template>
@@ -10,7 +15,7 @@
 export default {
   name: "DropDownList",
   props: {
-    items: Array,
+    items: Object,
   },
 };
 </script>
@@ -27,7 +32,8 @@ ul {
     padding: 0.5em 1em;
     cursor: pointer;
     &:hover {
-      background: var(--main-color-30);
+      filter: brightness(90%);
+      transition: filter 0.1s ease-in;
     }
   }
 }
