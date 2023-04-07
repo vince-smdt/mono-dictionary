@@ -39,7 +39,6 @@ export default {
 
 <style scoped lang="scss">
 @import "../assets/scss/variables.scss";
-@import "../assets/scss/functions.scss";
 
 nav {
   background: var(--main-color-5);
@@ -58,7 +57,7 @@ nav {
   justify-content: center;
   align-items: center;
   &:hover {
-    background: var(--main-color-20);
+    background: var(--main-color-10);
   }
 }
 

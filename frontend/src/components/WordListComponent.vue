@@ -20,7 +20,6 @@ export default {
 
 <style scoped lang="scss">
 @import "../assets/scss/variables.scss";
-@import "../assets/scss/functions.scss";
 
 .clickable-word {
   font-style: italic;

@@ -1,25 +1,35 @@
 // Themes
 $themes: (
   light: (
-    main-color: rgb(255, 255, 255),
-    secondary-color: rgb(0, 0, 0),
+    main-color: #ffffff,
+    secondary-color: #000000,
     lcd: -1,
   ),
   dark: (
-    main-color: rgb(0, 0, 0),
-    secondary-color: rgb(255, 255, 255),
+    main-color: #000000,
+    secondary-color: #ffffff,
     lcd: 1,
   ),
-  tropical: (
-    main-color: rgb(249, 107, 112),
-    secondary-color: rgb(252, 231, 125),
-    lcd: -1,
-  ),
   solarized: (
-    main-color: rgb(249, 235, 222),
-    secondary-color: rgb(129, 88, 84),
+    main-color: #f9ebde,
+    secondary-color: #815854,
     lcd: -1,
   ),
+  oriel: (
+    main-color: #393646,
+    secondary-color: #f2ecde,
+    lcd: 1,
+  ),
+  civic: (
+    main-color: #698269,
+    secondary-color: #eecf9e,
+    lcd: -1,
+  ),
+  equity: (
+    main-color: #A75D5D,
+    secondary-color: #f2b7a3,
+    lcd: -1,
+  )
 );
 
 // Global variables

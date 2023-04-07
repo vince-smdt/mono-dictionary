@@ -43,7 +43,6 @@ export default {
 
 <style scoped lang="scss">
 @import "../assets/scss/variables.scss";
-@import "../assets/scss/functions.scss";
 
 #outer-search-bar > * {
   white-space: nowrap;

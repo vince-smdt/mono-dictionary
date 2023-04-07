@@ -10,20 +10,22 @@
 <script>
 import NavBar from "./components/NavBarComponent.vue";
 import FooterBar from "./components/FooterBarComponent.vue";
+import { themes } from "./assets/scss/themes.module.scss";
 
 export default {
   name: "App",
+  mounted() {
+    this.themes = themes.split(" ");
+  },
   data() {
     return {
-      // TODO - make it so we don't have to define theme names in vue and in scss file, maybe json file with themes in it?
-      themes: ["light", "dark", "tropical", "solarized"],
-      current_theme: "Light",
+      themes: [],
     };
   },
   methods: {
     change_theme(theme) {
       this.$refs.app.classList.value = theme;
-    }
+    },
   },
   components: {
     NavBar: NavBar,
@@ -41,10 +43,10 @@ export default {
       $main-color: map-get($theme, main-color);
       $secondary-color: map-get($theme, secondary-color);
       $lcd: map-get($theme, lcd);
-  
+
       --main-color: #{$main-color};
       --secondary-color: #{$secondary-color};
-  
+
       @for $i from 1 through 10 {
         --main-color-#{$i * 5}: #{scale-color(
             $main-color,

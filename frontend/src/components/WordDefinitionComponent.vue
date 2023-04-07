@@ -91,7 +91,6 @@ export default {
 
 <style scoped lang="scss">
 @import "../assets/scss/variables.scss";
-@import "../assets/scss/functions.scss";
 
 #error-div,
 #word-sense-list {
@@ -130,7 +129,7 @@ export default {
           margin: 0.5em 0;
         }
         .example {
-          border-left: var(--main-color-50) 3px solid;
+          border-left: var(--secondary-color-15) 3px solid;
           background: var(--main-color-10);
           padding: 0.5em;
           margin: 0.4em 0;
