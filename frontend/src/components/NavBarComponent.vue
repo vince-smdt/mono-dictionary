@@ -1,5 +1,6 @@
 <template>
   <nav>
+    <!-- TODO - Make text, icons and child components in nav bar to selectable (text) -->
     <strong>Simple Dictionary</strong>
     <div id="theme-icon" @click="show_themes = !show_themes">
       <svg

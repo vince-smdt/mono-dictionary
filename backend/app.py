@@ -10,7 +10,7 @@ CORS(app)
 @app.route("/", methods=["POST"])
 def word_definition():
     if request.method != "POST":
-        pass # TODO - Handle wrong method
+        return jsonify({ "error": "Invalid request!" })
     
     # Fetch word
     word = request.form.get("word")

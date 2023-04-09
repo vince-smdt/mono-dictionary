@@ -96,7 +96,7 @@ export default {
 #error-div,
 #word-sense-list {
   max-width: 60em;
-  width: 60em;
+  margin: 0 1em;
 }
 
 #word-sense-list {

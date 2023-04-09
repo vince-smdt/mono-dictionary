@@ -5,7 +5,7 @@
       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" id="bi-search" viewBox="0 0 16 16">
         <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
       </svg>
-      <input ref="searchbar-input" type="text" v-model="word" />
+      <input ref="searchbar-input" type="text" v-model="word" placeholder="Word to lookup" />
     </div>
     <button type="button" id="lookup-button" @click="search">Look up</button>
   </div>
@@ -48,6 +48,13 @@ export default {
   white-space: nowrap;
 }
 
+#outer-search-bar label {
+  display: none;
+  @media screen and (min-width: #{$mobile-width}) {
+    display: inline;
+  }
+}
+
 #outer-search-bar label,
 #search-bar input,
 #lookup-button {
@@ -76,6 +83,13 @@ export default {
     background: transparent;
     color: var(--secondary-color);
     border: none;
+    &::placeholder {
+      color: var(--secondary-color);
+      opacity: 50%;
+      @media screen and (min-width: #{$mobile-width}) {
+        opacity: 0%;
+      }
+    }
     &:focus {
       outline: none;
     }
