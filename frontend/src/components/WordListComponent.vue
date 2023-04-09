@@ -21,6 +21,10 @@ export default {
 <style scoped lang="scss">
 @import "../assets/scss/variables.scss";
 
+div {
+  word-wrap: break-word;
+}
+
 .clickable-word {
   font-style: italic;
   text-decoration: underline;
