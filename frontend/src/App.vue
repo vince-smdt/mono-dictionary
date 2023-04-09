@@ -1,6 +1,5 @@
 <template>
-  <!-- TODO - keep theme even when refreshing page, cookies? -->
-  <div id="app" ref="app" class="dark">
+  <div id="app" ref="app" :class="current_theme">
     <NavBar :themes="themes" @change-theme="(theme) => change_theme(theme)" />
     <router-view id="router-view" />
     <FooterBar />
@@ -29,15 +28,22 @@ export default {
     });
 
     this.themes = processed_themes;
+
+    // Load theme from cookies if set
+    let cookie_theme = this.$cookies.get("theme");
+    this.current_theme = cookie_theme ?? this.default_theme;
   },
   data() {
     return {
       themes: [],
+      current_theme: "",
+      default_theme: "light",
     };
   },
   methods: {
     change_theme(theme) {
       this.$refs.app.classList.value = theme;
+      this.$cookies.set("theme", theme, "1y");
     },
   },
   components: {
