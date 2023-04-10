@@ -1,5 +1,6 @@
 <template>
   <main>
+    <!-- TODO - Automatically scroll back up to top of page when looking up new word -->
     <SearchBar
       ref="searchbar"
       class="searchbar"

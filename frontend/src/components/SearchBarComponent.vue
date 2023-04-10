@@ -83,6 +83,8 @@ export default {
     background: transparent;
     color: var(--secondary-color);
     border: none;
+    width: 100%;
+    box-sizing: border-box;
     &::placeholder {
       color: var(--secondary-color);
       opacity: 50%;

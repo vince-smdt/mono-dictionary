@@ -1,10 +1,10 @@
 <template>
-  <div>
+  <div id="outer-word-list">
     <span v-for="(word, index) in data" :key="word">
-      <a class="clickable-word" @click="$emit('word-clicked', word)">{{
-        word
-      }}</a
-      ><span v-if="index < data.length - 1">,&nbsp;</span>
+      <a class="clickable-word" @click="$emit('word-clicked', word)">
+        {{ word }}
+      </a>
+      <span v-if="index < data.length - 1">,&nbsp;</span>
     </span>
   </div>
 </template>
@@ -21,17 +21,18 @@ export default {
 <style scoped lang="scss">
 @import "../assets/scss/variables.scss";
 
-div {
-  word-wrap: break-word;
-}
-
-.clickable-word {
-  font-style: italic;
-  text-decoration: underline;
-  cursor: pointer;
-  &:hover {
-    transition: color 0.1s ease-in;
-    color: var(--secondary-color-40);
+#outer-word-list {
+  span {
+    display: inline-block;
+  }
+  .clickable-word {
+    font-style: italic;
+    text-decoration: underline;
+    cursor: pointer;
+    &:hover {
+      transition: color 0.1s ease-in;
+      color: var(--secondary-color-40);
+    }
   }
 }
 </style>
