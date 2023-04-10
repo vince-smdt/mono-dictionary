@@ -6,6 +6,9 @@
   <div v-else id="word-sense-list">
     <div class="sense" v-for="(sense, index) in data" :key="sense">
       <!-- Phonetic -->
+      <!-- TODO - add microphone svg on the opposite side of the word name and make it play the pronunciation of the word 
+           (mp3 from api response) -->
+      <!-- TODO - maybe add svg pointing to source of information (url found in api response info) -->
       <strong class="word">{{ sense.word }}</strong>
       <sup class="sense-index">{{ index + 1 }}</sup>
       <em class="phonetic">{{ sense.phonetic }}</em>
@@ -20,7 +23,6 @@
           <li v-for="definition in meaning.definitions" :key="definition">
             {{ definition.definition }}
 
-            <!-- TODO - synonyms and antonyms don't wrap but overflow instead, make them wrap -->
             <!-- Definition synonyms -->
             <div class="definition-synonyms" v-if="definition.synonyms.length">
               Synonyms:

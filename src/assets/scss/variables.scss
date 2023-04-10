@@ -1,38 +1,41 @@
 // Themes
 $themes: (
-  light: (
-    main-color: #eeeeee,
-    secondary-color: #000000,
-    lcd: -1,
-  ),
-  dark: (
-    main-color: #151515,
-    secondary-color: #ffffff,
-    lcd: 1,
-  ),
-  solarized: (
-    main-color: #f9ebde,
-    secondary-color: #815854,
-    lcd: -1,
-  ),
-  oriel: (
+  default: (
     main-color: #393646,
+    // Background color
     secondary-color: #eee5d2,
+    // Text color
     lcd: 1,
-  ),
-  civic: (
-    main-color: #698269,
-    secondary-color: #eecf9e,
-    lcd: -1,
+    // Lightness changing direction (1 = becomes brigther, -1 darker)
   ),
   equity: (
     main-color: #a75d5d,
     secondary-color: #f2b7a3,
     lcd: -1,
   ),
+  light: (
+    main-color: #eeeeee,
+    secondary-color: #000000,
+    lcd: -1,
+  ),
+  onyx: (
+    main-color: #151515,
+    secondary-color: #ffffff,
+    lcd: 1,
+  ),
+  solarized: (
+    main-color: #f9efde,
+    secondary-color: #815854,
+    lcd: -1,
+  ),
+  sage: (
+    main-color: #bbd6b8,
+    secondary-color: #495d51,
+    lcd: -1,
+  ),
   standard: (
-    main-color: #8f43ee,
-    secondary-color: #f0eb8d,
+    main-color: #7130c1,
+    secondary-color: #f0e48d,
     lcd: -1,
   ),
 );

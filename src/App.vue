@@ -1,5 +1,6 @@
 <template>
   <div id="app" ref="app" :class="current_theme">
+    <!-- TODO - change name to mono dictionary? more domain names available and more unique -->
     <NavBar :themes="themes" @change-theme="(theme) => change_theme(theme)" />
     <router-view id="router-view" />
     <FooterBar />
@@ -31,13 +32,14 @@ export default {
 
     // Load theme from cookies if set
     let cookie_theme = this.$cookies.get("theme");
+    if (this.themes[cookie_theme] === undefined) cookie_theme = undefined;
     this.current_theme = cookie_theme ?? this.default_theme;
   },
   data() {
     return {
-      themes: [],
+      themes: {},
       current_theme: "",
-      default_theme: "light",
+      default_theme: "default",
     };
   },
   methods: {

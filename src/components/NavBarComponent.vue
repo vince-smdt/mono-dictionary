@@ -3,6 +3,7 @@
     <!-- TODO - Make text, icons and child components in nav bar to selectable (text) -->
     <strong>Simple Dictionary</strong>
     <div id="theme-icon" @click="show_themes = !show_themes">
+      <!-- TODO - put svg's in separate files and link them while keeping currentColor property (assets folder) -->
       <svg
         xmlns="http://www.w3.org/2000/svg"
         width="18"
@@ -42,7 +43,7 @@ export default {
 @import "../assets/scss/variables.scss";
 
 nav {
-  background: var(--main-color-5);
+  background: var(--main-color-10);
   height: $header-height;
   display: flex;
   padding: 0 2em;
