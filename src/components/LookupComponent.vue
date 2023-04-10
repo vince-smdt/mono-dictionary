@@ -46,18 +46,15 @@ export default {
 
       await this.set_class_visibility("spinner", true);
 
-      const form_data = new FormData();
-      form_data.append("word", word);
+      let word_data_holder;
+      let url =
+        "https://api.dictionaryapi.dev/api/v2/entries/en/" +
+        encodeURIComponent(word);
 
-      let data_holder;
-
-      fetch("http://localhost:5000", {
-        method: "POST",
-        body: form_data,
-      })
+      fetch(url, { method: "GET" })
         .then((response) => response.json())
         .then((data) => {
-          data_holder = data;
+          word_data_holder = data;
         })
         .catch((err) => {
           this.word_data = { error: err };
@@ -66,14 +63,19 @@ export default {
           await this.set_class_visibility("spinner", false);
 
           // Assign data after spinner animation end to avoid janky spinner movement
-          this.word_data = data_holder;
+          this.word_data = word_data_holder;
 
           await this.set_class_visibility("searchbar", true, false);
           await this.set_class_visibility("word-definition", true, false);
           this.focus_searchbar();
         });
     },
-    async set_class_visibility(component_class, show, wait = true, display_none = true) {
+    async set_class_visibility(
+      component_class,
+      show,
+      wait = true,
+      display_none = true
+    ) {
       const SELECTOR = "." + component_class;
 
       if (show) $(SELECTOR).show();
