@@ -9,10 +9,36 @@
       <!-- TODO - add microphone svg on the opposite side of the word name and make it play the pronunciation of the word 
            (mp3 from api response) -->
       <!-- TODO - maybe add svg pointing to source of information (url found in api response info) -->
-      <strong class="word">{{ sense.word }}</strong>
-      <sup class="sense-index">{{ index + 1 }}</sup>
-      <em class="phonetic">{{ sense.phonetic }}</em>
-      <br />
+      <div class="sense-header">
+        <div>
+          <strong class="word">{{ sense.word }}</strong>
+          <sup class="sense-index">{{ index + 1 }}</sup>
+          <em class="phonetic">{{ sense.phonetic }}</em>
+        </div>
+        <div>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            fill="currentColor"
+            class="bi bi-mic-fill"
+            viewBox="0 0 16 16"
+            v-if="
+              Array.isArray(sense.phonetics) &&
+              ((sense.phonetics[0] && sense.phonetics[0].audio) ||
+                (sense.phonetics[1] && sense.phonetics[1].audio))
+            "
+            @click="
+              play_sound(sense.phonetics[0].audio || sense.phonetics[1].audio)
+            "
+          >
+            <path d="M5 3a3 3 0 0 1 6 0v5a3 3 0 0 1-6 0V3z" />
+            <path
+              d="M3.5 6.5A.5.5 0 0 1 4 7v1a4 4 0 0 0 8 0V7a.5.5 0 0 1 1 0v1a5 5 0 0 1-4.5 4.975V15h3a.5.5 0 0 1 0 1h-7a.5.5 0 0 1 0-1h3v-2.025A5 5 0 0 1 3 8V7a.5.5 0 0 1 .5-.5z"
+            />
+          </svg>
+        </div>
+      </div>
 
       <!-- Meaning -->
       <div class="meaning" v-for="meaning in sense.meanings" :key="meaning">
@@ -75,6 +101,11 @@ import WordList from "./WordListComponent.vue";
 
 export default {
   name: "WordDefinition",
+  methods: {
+    play_sound(url) {
+      new Audio(url).play();
+    },
+  },
   props: {
     data: undefined,
   },
@@ -111,6 +142,16 @@ export default {
     padding: 1em;
     border-radius: 10px;
     background: var(--main-color-5);
+    .sense-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      svg:hover {
+        transition: fill 0.1s ease-in;
+        fill: var(--secondary-color-30);
+        cursor: pointer;
+      }
+    }
     .word {
       font-size: 24px;
     }

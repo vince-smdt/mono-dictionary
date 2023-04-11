@@ -31,7 +31,7 @@ export default {
     cursor: pointer;
     &:hover {
       transition: color 0.1s ease-in;
-      color: var(--secondary-color-40);
+      color: var(--secondary-color-30);
     }
   }
 }
