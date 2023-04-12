@@ -1,7 +1,7 @@
 <template>
   <nav>
     <!-- TODO - Make text, icons and child components in nav bar to selectable (text) -->
-    <strong>Simple Dictionary</strong>
+    <strong>Mono Dictionary</strong>
     <div id="theme-icon" @click="show_themes = !show_themes">
       <!-- TODO - put svg's in separate files and link them while keeping currentColor property (assets folder) -->
       <svg

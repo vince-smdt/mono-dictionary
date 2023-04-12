@@ -1,4 +1,4 @@
-# Simple Dictionary
+# Mono Dictionary
 
 ## Project setup
 ```
