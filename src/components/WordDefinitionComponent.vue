@@ -160,10 +160,12 @@ export default {
       div:nth-of-type(2) > * {
         margin-left: 0.5em;
       }
-      svg:hover {
+      svg {
         transition: fill 0.1s ease-in;
-        fill: var(--secondary-color-30);
-        cursor: pointer;
+        &:hover {
+          fill: var(--secondary-color-30);
+          cursor: pointer;
+        }
       }
     }
     .word {

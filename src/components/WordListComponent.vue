@@ -29,8 +29,8 @@ export default {
     font-style: italic;
     text-decoration: underline;
     cursor: pointer;
+    transition: color 0.1s ease-in;
     &:hover {
-      transition: color 0.1s ease-in;
       color: var(--secondary-color-30);
     }
   }
