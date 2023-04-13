@@ -86,6 +86,10 @@ export default {
   src: url(assets/fonts/robotomono.ttf);
 }
 
+*, html, body {
+  scroll-behavior: smooth !important;
+}
+
 * {
   margin: 0;
   padding: 0;

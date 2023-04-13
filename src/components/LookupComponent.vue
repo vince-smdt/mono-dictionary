@@ -36,14 +36,20 @@ export default {
       return new Promise((resolve) => setTimeout(resolve, ms));
     },
     async lookup(word) {
+      // Scroll back up to top of window
+      window.scrollTo({top: 0, behavior: 'smooth'});
+
+      // Update search bar with word
       this.$refs.searchbar.update_input(word);
 
+      // Hide search bar and word definition
       await this.set_class_visibility("word-definition", false, false, false);
       await this.set_class_visibility("searchbar", false);
 
       // Empty word data to avoid spinner misplacement
       this.word_data = "";
 
+      // Show spinner
       await this.set_class_visibility("spinner", true);
 
       let word_data_holder;
@@ -51,6 +57,7 @@ export default {
         "https://api.dictionaryapi.dev/api/v2/entries/en/" +
         encodeURIComponent(word);
 
+      // Fetch word data
       fetch(url, { method: "GET" })
         .then((response) => response.json())
         .then((data) => {
@@ -60,11 +67,13 @@ export default {
           this.word_data = { error: err };
         })
         .finally(async () => {
+          // Hide spinner
           await this.set_class_visibility("spinner", false);
 
           // Assign data after spinner animation end to avoid janky spinner movement
           this.word_data = word_data_holder;
 
+          // Show search bar and word definition
           await this.set_class_visibility("searchbar", true, false);
           await this.set_class_visibility("word-definition", true, false);
           this.focus_searchbar();
