@@ -2,8 +2,7 @@
   <nav>
     <!-- TODO - Make text, icons and child components in nav bar to selectable (text) -->
     <strong>Mono Dictionary</strong>
-    <div id="theme-icon" @click="show_themes = !show_themes">
-      <!-- TODO - put svg's in separate files and link them while keeping currentColor property (assets folder) -->
+    <div id="theme-icon" @click="show_themes = !show_themes" tabindex="0" @blur="show_themes = false">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         width="18"
@@ -14,8 +13,12 @@
       >
         <path d="M8 15A7 7 0 1 0 8 1v14zm0 1A8 8 0 1 1 8 0a8 8 0 0 1 0 16z" />
       </svg>
-      <!-- TODO - Remove drop down list when not focused, clicked somewhere else -->
-      <DropDownList v-if="show_themes" id="themes-dropdown" :items="themes" @item-click="(theme) => $emit('change-theme', theme)" />
+      <DropDownList
+        v-if="show_themes"
+        id="themes-dropdown"
+        :items="themes"
+        @item-click="(theme) => $emit('change-theme', theme)"
+      />
     </div>
   </nav>
 </template>

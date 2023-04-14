@@ -1,5 +1,4 @@
 <template>
-  <!-- TODO - Add links, github? add underline to links -->
   <footer>
     <div>Developed by <strong>Vincent Simard-Schmidt</strong></div>
     <div class="small-text">
