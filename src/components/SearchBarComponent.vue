@@ -1,30 +1,86 @@
+<!-- TODO -Refactor everything in this file, messy code -->
 <template>
   <div id="outer-search-bar">
     <label>Word to lookup: </label>
     <div id="search-bar">
-      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" id="bi-search" viewBox="0 0 16 16">
-        <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="24"
+        height="24"
+        id="bi-search"
+        viewBox="0 0 16 16"
+      >
+        <path
+          d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"
+        />
       </svg>
-      <input ref="searchbar-input" type="text" v-model="word" placeholder="Word to lookup" />
+      <input
+        ref="searchbar-input"
+        type="text"
+        v-model="word"
+        placeholder="Word to lookup"
+        @input="update_autocomplete()"
+        @focus="
+          () => {
+            focused = true;
+            update_autocomplete();
+          }
+        "
+        @blur="focused = false"
+      />
+      <!-- TODO - maybe animate suggestions when they appear on screen? -->
+      <div
+        id="suggestions"
+        @mouseenter="hovering_suggestions = true"
+        @mouseleave="hovering_suggestions = false"
+        v-if="
+          (focused || hovering_suggestions) &&
+          auto_complete_suggestions.length > 0
+        "
+      >
+        <div
+          v-for="suggestion in auto_complete_suggestions"
+          :key="suggestion"
+          @click="
+            () => {
+              update_input(suggestion);
+              search(word);
+            }
+          "
+        >
+          {{ suggestion }}
+        </div>
+      </div>
     </div>
     <button type="button" id="lookup-button" @click="search">Look up</button>
   </div>
 </template>
 
 <script>
+import words from "../assets/data/words.js";
+
 export default {
   name: "SearchBar",
   mounted() {
+    // Event listener for when enter key pressed
     const searchbar = document.getElementById("search-bar");
     searchbar.addEventListener("keydown", (e) => {
       if (e.key === "Enter") {
         this.search();
       }
     });
+
+    // Setup auto-complete
+    this.word_list = words;
   },
   data() {
     return {
       word: "",
+      word_list: [],
+      auto_complete_suggestions: [],
+      MAX_SUGGESTIONS: 10,
+      focused: false,
+      hovering_suggestions: false,
     };
   },
   methods: {
@@ -33,10 +89,34 @@ export default {
     },
     search() {
       this.$emit("search", this.word);
+      this.hovering_suggestions = false;
+    },
+    blur() {
+      this.$refs["searchbar-input"].blur();
     },
     focus() {
       this.$refs["searchbar-input"].focus();
-    }
+    },
+    update_autocomplete() {
+      let current_word = this.word;
+      this.auto_complete_suggestions = [];
+
+      // No suggestions if word is less than 2 chars long
+      if (current_word.length < 2) {
+        return;
+      }
+
+      // Get auto complete suggestions from word list
+      this.word_list.every((word) => {
+        if (word.startsWith(current_word)) {
+          this.auto_complete_suggestions.push(word);
+          if (this.auto_complete_suggestions.length >= this.MAX_SUGGESTIONS) {
+            return false; // break out of "every" loop
+          }
+        }
+        return true; // loop
+      });
+    },
   },
 };
 </script>
@@ -65,6 +145,7 @@ export default {
 
 #outer-search-bar,
 #search-bar {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -94,6 +175,22 @@ export default {
     }
     &:focus {
       outline: none;
+    }
+  }
+  #suggestions {
+    position: absolute;
+    top: calc($header-height - 0.67em);
+    width: 100%;
+    left: 0;
+    background: var(--main-color-10);
+    outline: var(--secondary-color) solid 2px;
+    border-radius: 0 0 5px 5px;
+    & > div {
+      padding: 0.5em;
+      cursor: pointer;
+      &:hover {
+        background: var(--main-color-20);
+      }
     }
   }
 }

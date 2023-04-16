@@ -38,7 +38,8 @@ export default {
       // Scroll back up to top of window
       window.scrollTo({top: 0, behavior: 'smooth'});
 
-      // Update search bar with word
+      // Unfocus and update search bar with word
+      this.$refs.searchbar.blur();
       this.$refs.searchbar.update_input(word);
 
       // Hide search bar and word definition
@@ -75,7 +76,6 @@ export default {
           // Show search bar and word definition
           await this.set_class_visibility("searchbar", true, false);
           await this.set_class_visibility("word-definition", true, false);
-          this.focus_searchbar();
         });
     },
     async set_class_visibility(
