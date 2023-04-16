@@ -8,6 +8,7 @@
       <!-- Phonetic -->
       <div class="sense-header">
         <div>
+          <!-- TODO - do something about words overflowing, escpecially on mobile (break-word), ex. pneumonoultramicroscopicsilicovolcanoconiosis -->
           <strong class="word">{{ sense.word }}</strong>
           <sup class="sense-index">{{ index + 1 }}</sup>
           <em class="phonetic">{{ sense.phonetic }}</em>

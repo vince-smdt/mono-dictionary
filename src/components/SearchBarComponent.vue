@@ -29,6 +29,7 @@
         @blur="focused = false"
       />
       <!-- TODO - maybe animate suggestions when they appear on screen? -->
+      <!-- TODO - do something about words overflowing, ex. pneumonoultramicroscopicsilicovolcanoconiosis -->
       <div
         id="suggestions"
         @mouseenter="hovering_suggestions = true"
@@ -48,7 +49,7 @@
             }
           "
         >
-          {{ suggestion }}
+        <b>{{ word }}</b>{{ suggestion.substring(word.length) }}
         </div>
       </div>
     </div>
@@ -182,14 +183,14 @@ export default {
     top: calc($header-height - 0.67em);
     width: 100%;
     left: 0;
-    background: var(--main-color-10);
+    background: var(--main-color-5);
     outline: var(--secondary-color) solid 2px;
     border-radius: 0 0 5px 5px;
     & > div {
       padding: 0.5em;
       cursor: pointer;
       &:hover {
-        background: var(--main-color-20);
+        background: var(--main-color-15);
       }
     }
   }
