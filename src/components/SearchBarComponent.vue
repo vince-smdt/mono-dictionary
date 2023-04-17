@@ -15,15 +15,26 @@
         />
       </svg>
       <input
-        ref="searchbar-input"
+        id="search-bar-input"
+        ref="search-bar-input"
         type="text"
         v-model="word"
         placeholder="Word to lookup"
-        @input="update_autocomplete()"
+        @keydown.esc="$event.target.blur()"
+        @input="
+          () => {
+            if (!prevent_autocomplete_update) {
+              update_autocomplete();
+              this.typed_word = word;
+              this.focused_suggestion_index = -1;
+            }
+          }
+        "
         @focus="
           () => {
             focused = true;
             update_autocomplete();
+            this.typed_word = word;
           }
         "
         @blur="focused = false"
@@ -32,25 +43,22 @@
       <!-- TODO - do something about words overflowing, ex. pneumonoultramicroscopicsilicovolcanoconiosis -->
       <div
         id="suggestions"
-        @mouseenter="hovering_suggestions = true"
-        @mouseleave="hovering_suggestions = false"
-        v-if="
-          (focused || hovering_suggestions) &&
-          auto_complete_suggestions.length > 0
-        "
+        v-if="focused && auto_complete_suggestions.length > 0"
       >
-        <div
-          v-for="suggestion in auto_complete_suggestions"
+        <a
+          v-for="(suggestion, index) in auto_complete_suggestions"
           :key="suggestion"
-          @click="
+          @mousedown="
             () => {
               update_input(suggestion);
               search(word);
             }
           "
+          :class="index == focused_suggestion_index ? 'suggestion-focus' : ''"
         >
-        <b>{{ word }}</b>{{ suggestion.substring(word.length) }}
-        </div>
+          <b>{{ typed_word }}</b
+          >{{ suggestion.substring(typed_word.length) }}
+        </a>
       </div>
     </div>
     <button type="button" id="lookup-button" @click="search">Look up</button>
@@ -59,10 +67,14 @@
 
 <script>
 import words from "../assets/data/words.js";
+import utils from "../utils.js";
 
 export default {
   name: "SearchBar",
   mounted() {
+    // Setup auto-complete
+    this.word_list = words;
+
     // Event listener for when enter key pressed
     const searchbar = document.getElementById("search-bar");
     searchbar.addEventListener("keydown", (e) => {
@@ -71,17 +83,58 @@ export default {
       }
     });
 
-    // Setup auto-complete
-    this.word_list = words;
+    // Setup event listeners for arrow keys and escape
+    document
+      .getElementById("search-bar-input")
+      .addEventListener("keydown", (event) => {
+        if (
+          this.auto_complete_suggestions.length === 0 ||
+          (event.key !== "ArrowDown" && event.key !== "ArrowUp")
+        ) {
+          this.prevent_autocomplete_update = false;
+          return;
+        }
+
+        // Prevent up and down arrow keys from changing cursor position
+        event.preventDefault();
+
+        // Get function to modify suggestion index
+        let index_func = {
+          ArrowDown: utils.increment_index_in_range,
+          ArrowUp: utils.decrement_index_in_range,
+        }[event.key];
+
+        // Modify suggestion index
+        this.focused_suggestion_index = index_func(
+          this.focused_suggestion_index,
+          -1,
+          this.auto_complete_suggestions.length - 1
+        );
+
+        // Update input
+        if (this.focused_suggestion_index !== -1) {
+          this.update_input(
+            this.auto_complete_suggestions[this.focused_suggestion_index]
+          );
+        } else {
+          // If no suggestions focused on, go back to original word
+          this.word = this.typed_word;
+        }
+
+        // Do not modify auto complete suggestions upon changing index
+        this.prevent_autocomplete_update = true;
+      });
   },
   data() {
     return {
       word: "",
+      typed_word: "",
       word_list: [],
       auto_complete_suggestions: [],
       MAX_SUGGESTIONS: 10,
       focused: false,
-      hovering_suggestions: false,
+      focused_suggestion_index: -1,
+      prevent_autocomplete_update: false,
     };
   },
   methods: {
@@ -90,13 +143,13 @@ export default {
     },
     search() {
       this.$emit("search", this.word);
-      this.hovering_suggestions = false;
+      this.typed_word = this.word;
     },
     blur() {
-      this.$refs["searchbar-input"].blur();
+      this.$refs["search-bar-input"].blur();
     },
     focus() {
-      this.$refs["searchbar-input"].focus();
+      this.$refs["search-bar-input"].focus();
     },
     update_autocomplete() {
       let current_word = this.word;
@@ -186,9 +239,11 @@ export default {
     background: var(--main-color-5);
     outline: var(--secondary-color) solid 2px;
     border-radius: 0 0 5px 5px;
-    & > div {
+    & > a {
       padding: 0.5em;
       cursor: pointer;
+      display: block;
+      &.suggestion-focus,
       &:hover {
         background: var(--main-color-15);
       }
