@@ -10,7 +10,9 @@
         Free Dictionary API
       </a>
     </div>
-    <div class="small-text"><i>2023</i></div>
+    <div class="small-text">
+      <i>{{ new Date().getFullYear() }}</i>
+    </div>
     <div id="icons">
       <a href="https://github.com/vince-smdt/mono-dictionary" target="_blank">
         <svg
