@@ -210,7 +210,6 @@ export default {
   padding: 5px;
   border: var(--secondary-color) solid 2px;
   border-radius: 5px;
-  transition: background 0.15s ease-in;
   &:hover {
     background: var(--main-color-5);
   }
@@ -258,7 +257,6 @@ export default {
   border-radius: 5px;
   padding: 5px;
   cursor: pointer;
-  transition: background 0.15s ease-in;
   &:hover {
     background: var(--main-color-5);
   }

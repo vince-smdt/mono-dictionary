@@ -1,8 +1,10 @@
 <template>
   <nav>
     <!-- TODO - Make text, icons and child components in nav bar to selectable (text) -->
-    <strong>Mono Dictionary</strong>
-    <div id="theme-icon" @click="show_themes = !show_themes" tabindex="0" @blur="show_themes = false">
+    <div @click="$emit('reload')">
+      <strong>Mono Dictionary</strong>
+    </div>
+    <div @click="show_themes = !show_themes" tabindex="0" @blur="show_themes = false">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         width="18"
@@ -54,15 +56,19 @@ nav {
   align-items: center;
 }
 
-#theme-icon {
+nav > div {
   height: 100%;
   padding: 0 calc($header-height / 2);
-  cursor: pointer;
   display: flex;
   justify-content: center;
   align-items: center;
+  cursor: pointer;
+  -webkit-user-select: none; /* Safari */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* IE10+/Edge */
+  user-select: none; /* Standard */
   &:hover {
-    background: var(--main-color-10);
+    background: var(--main-color-15);
   }
 }
 

@@ -1,6 +1,6 @@
 <template>
   <div id="app" ref="app" :class="current_theme">
-    <NavBar :themes="themes" @change-theme="(theme) => change_theme(theme)" />
+    <NavBar :themes="themes" @change-theme="(theme) => change_theme(theme)" @reload="this.$router.go" />
     <router-view id="router-view" />
     <FooterBar />
   </div>
@@ -93,6 +93,11 @@ export default {
 * {
   margin: 0;
   padding: 0;
+  transition: background 0.1s ease-in;
+}
+
+a {
+  transition: color 0.1s ease-in;
 }
 
 html {
@@ -101,6 +106,7 @@ html {
 
 svg {
   fill: var(--secondary-color);
+  transition: fill 0.1s ease-in;
 }
 
 #app {

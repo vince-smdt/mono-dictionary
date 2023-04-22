@@ -72,7 +72,6 @@ footer {
   }
   a {
     color: var(--secondary-color);
-    transition: color 0.1s ease-in;
     &:hover {
       color: var(--secondary-color-40);
     }
@@ -87,7 +86,6 @@ footer {
     align-items: center;
     gap: 0.8em;
     svg {
-      transition: fill 0.1s ease-in;
       &:hover {
         fill: var(--secondary-color-30);
         cursor: pointer;

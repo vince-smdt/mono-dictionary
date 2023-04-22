@@ -31,9 +31,9 @@ ul {
   li {
     padding: 0.5em 1em;
     cursor: pointer;
+    transition: filter 0.1s ease-in;
     &:hover {
       filter: brightness(90%);
-      transition: filter 0.1s ease-in;
     }
   }
 }

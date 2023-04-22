@@ -170,7 +170,6 @@ export default {
         margin-left: 0.5em;
       }
       svg {
-        transition: fill 0.1s ease-in;
         &:hover {
           fill: var(--secondary-color-30);
           cursor: pointer;
