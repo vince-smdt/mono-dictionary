@@ -1,6 +1,5 @@
 <template>
   <nav>
-    <!-- TODO - Make text, icons and child components in nav bar to selectable (text) -->
     <div @click="$emit('reload')">
       <strong>Mono Dictionary</strong>
     </div>
@@ -54,21 +53,21 @@ nav {
   padding: 0 2em;
   justify-content: space-between;
   align-items: center;
-}
-
-nav > div {
-  height: 100%;
-  padding: 0 calc($header-height / 2);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-  -webkit-user-select: none; /* Safari */
-  -moz-user-select: none; /* Firefox */
-  -ms-user-select: none; /* IE10+/Edge */
-  user-select: none; /* Standard */
-  &:hover {
-    background: var(--main-color-15);
+  & > div {
+    height: 100%;
+    padding: 0 calc($header-height / 2);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    white-space: nowrap;
+    -webkit-user-select: none; /* Safari */
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* IE10+/Edge */
+    user-select: none; /* Standard */
+    &:hover {
+      background: var(--main-color-15);
+    }
   }
 }
 

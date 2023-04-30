@@ -8,7 +8,6 @@
       <!-- Phonetic -->
       <div class="sense-header">
         <div>
-          <!-- TODO - do something about words overflowing, escpecially on mobile (break-word), ex. pneumonoultramicroscopicsilicovolcanoconiosis -->
           <strong class="word">{{ sense.word }}</strong>
           <sup class="sense-index">{{ index + 1 }}</sup>
           <em class="phonetic">{{ sense.phonetic }}</em>
@@ -153,6 +152,7 @@ export default {
 }
 
 #word-sense-list {
+  max-width: calc(100% - 2em);
   li {
     list-style-type: circle;
     margin: 0.5em 0 0.5em 3em;
@@ -162,12 +162,33 @@ export default {
     padding: 1em;
     border-radius: 10px;
     background: var(--main-color-5);
+    max-width: 100%;
     .sense-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      div:nth-of-type(2) > * {
-        margin-left: 0.5em;
+      max-width: 100%;
+      div:nth-of-type(1) {
+        min-width: 0;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        .word {
+          min-width: 0;
+          font-size: 24px;
+        }
+        .sense-index {
+          margin-left: 0.5em;
+        }
+        .phonetic {
+          margin-left: 1em;
+        }
+      }
+      div:nth-of-type(2) {
+        display: flex;
+        flex-wrap: nowrap;
+        & > * {
+          margin-left: 0.5em;
+        }
       }
       svg {
         &:hover {
@@ -175,15 +196,6 @@ export default {
           cursor: pointer;
         }
       }
-    }
-    .word {
-      font-size: 24px;
-    }
-    .sense-index {
-      margin-left: 0.5em;
-    }
-    .phonetic {
-      margin-left: 1em;
     }
     .meaning {
       margin-bottom: 1em;

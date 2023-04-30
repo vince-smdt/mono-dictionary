@@ -1,4 +1,3 @@
-<!-- TODO -Refactor everything in this file, messy code -->
 <template>
   <div id="outer-search-bar">
     <label>Word to lookup: </label>
@@ -39,8 +38,6 @@
         "
         @blur="focused = false"
       />
-      <!-- TODO - maybe animate suggestions when they appear on screen? -->
-      <!-- TODO - do something about words overflowing, ex. pneumonoultramicroscopicsilicovolcanoconiosis -->
       <div
         id="suggestions"
         v-if="focused && auto_complete_suggestions.length > 0"
@@ -242,6 +239,8 @@ export default {
       padding: 0.5em;
       cursor: pointer;
       display: block;
+      overflow: hidden;
+      text-overflow: ellipsis;
       &.suggestion-focus,
       &:hover {
         background: var(--main-color-15);
