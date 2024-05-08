@@ -24,7 +24,7 @@
           () => {
             if (!prevent_autocomplete_update) {
               update_autocomplete();
-              this.typed_word = word;
+              this.typed_word = word.toLowerCase();
               this.focused_suggestion_index = -1;
             }
           }
@@ -33,7 +33,7 @@
           () => {
             focused = true;
             update_autocomplete();
-            this.typed_word = word;
+            this.typed_word = word.toLowerCase();
           }
         "
         @blur="focused = false"
@@ -140,7 +140,7 @@ export default {
     },
     search() {
       this.$emit("search", this.word);
-      this.typed_word = this.word;
+      this.typed_word = this.word.toLowerCase();
     },
     blur() {
       this.$refs["search-bar-input"].blur();
@@ -149,7 +149,7 @@ export default {
       this.$refs["search-bar-input"].focus();
     },
     update_autocomplete() {
-      let current_word = this.word;
+      let current_word = this.word.toLowerCase();
       this.auto_complete_suggestions = [];
 
       // No suggestions if word is less than 2 chars long

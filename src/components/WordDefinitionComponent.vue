@@ -22,7 +22,8 @@
             viewBox="0 0 16 16"
             v-if="
               Array.isArray(sense.phonetics) &&
-              sense.phonetics.some((phonetic) => phonetic.audio)
+              sense.phonetics.some((phonetic) => phonetic.audio) &&
+              false // AUDIO SERVERS ARE DOWN :( - HIDING BUTTON UNTIL THEY ARE FIXED
             "
             @click="
               () => {
